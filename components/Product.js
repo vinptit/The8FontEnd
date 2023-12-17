@@ -24,7 +24,7 @@ const Product = ({
 <section>
   <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
     <header>
-      <h2 class="text-xl font-bold text-gray-900 sm:text-3xl">New Arrivals</h2>
+      <h2 class="text-xl font-bold text-gray-900 sm:text-3xl">All Products</h2>
 
       <p class="mt-4 max-w-md text-gray-500">
         

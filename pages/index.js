@@ -9,16 +9,17 @@ import {getServerSession} from "next-auth";
 import {authOptions} from "@/pages/api/auth/[...nextauth]";
 import {Setting} from "@/models/Setting";
 import ProductList from "../components/Product";
+import GridProduct from "../components/GridProduct";
 
 export default function HomePage({featuredProduct,newProducts,wishedNewProducts}) {
   return (
     <div>
       <Header />
       <Carousel/>
-      <Featured product={featuredProduct} />
-      
+      {/* <Featured product={featuredProduct} /> */}
+      <GridProduct/>
       <NewProducts products={newProducts} wishedProducts={wishedNewProducts} />
-      <ProductList products={newProducts} />
+      {/* <ProductList products={newProducts} /> */}
     </div>
   );
 }

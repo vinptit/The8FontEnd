@@ -202,6 +202,16 @@
   resolved "https://registry.npmjs.org/@eslint/js/-/js-8.36.0.tgz"
   integrity sha512-lxJ9R5ygVm8ZWgYdUweoq5ownDlJ4upvoWmO4eLxBYHdMo+vZ/Rx0EN6MbKWDJOSUGrqJy2Gt+Dyv/VKml0fjg==
 
+"@fontsource/chakra-petch@^5.0.18":
+  version "5.0.18"
+  resolved "https://registry.yarnpkg.com/@fontsource/chakra-petch/-/chakra-petch-5.0.18.tgz#9ef2fab8eda513a34edfb6bc493265e601dcf96e"
+  integrity sha512-gWMSW8brEkFeeOk9Js3M26xS8X3drO+OK0XvnpJBvDag8ktghJJlhui+HMnILx+deFtr16ivQjSw2CX3iIRgFg==
+
+"@fontsource/play@^5.0.18":
+  version "5.0.18"
+  resolved "https://registry.yarnpkg.com/@fontsource/play/-/play-5.0.18.tgz#61059efc8079a686b3cfe6041b4dd0f1eb790e86"
+  integrity sha512-sWCVWG3NToev8kTzzafME5CtbVXfLP14ef7RuQoWBg8/BfEeRcKJiuvM6T2M3qnYFNldiHB1qm4w2N6muLcQAw==
+
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.13"
   resolved "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.11.13.tgz"

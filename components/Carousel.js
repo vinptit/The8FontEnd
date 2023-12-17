@@ -26,9 +26,9 @@ const Carousel = () => {
   };
 
   return (
-    <div id="default-carousel" className="relative w-full" data-carousel="slide">
+    <div id="default-carousel" className="carousel relative w-full" data-carousel="slide">
       {/* Carousel wrapper */}
-      <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
+      <div className="relative overflow-hidden rounded-lg carousel">
         {/* Carousel items */}
         {[1, 2, 3, 4, 5].map((index) => (
           <div

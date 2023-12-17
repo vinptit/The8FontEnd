@@ -12,6 +12,7 @@ import HeartSolidIcon from "@/components/icons/HeartSolidIcon";
 import axios from "axios";
 
 const ProductWrapper = styled.div`
+  height: 400px;
   button{
     width: 100%;
     text-align: center;
@@ -22,7 +23,7 @@ const ProductWrapper = styled.div`
 const WhiteBox = styled(Link)`
   background-color: #fff;
   padding: 20px;
-  height: 120px;
+  height: 250px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -31,16 +32,18 @@ const WhiteBox = styled(Link)`
   position: relative;
   img{
     max-width: 100%;
-    max-height: 80px;
+    max-height: 200px;
   }
 `;
 
 const Title = styled(Link)`
   font-weight: normal;
-  font-size:.9rem;
+  font-size: 1.2rem;
   color:inherit;
   text-decoration:none;
   margin:0;
+  text-align: center;
+  font-family: Play, sans-serif;
 `;
 
 const ProductInfoBox = styled.div`
