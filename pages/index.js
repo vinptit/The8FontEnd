@@ -10,6 +10,7 @@ import {authOptions} from "@/pages/api/auth/[...nextauth]";
 import {Setting} from "@/models/Setting";
 import ProductList from "../components/Product";
 import GridProduct from "../components/GridProduct";
+import Footer from "../components/Footer";
 
 export default function HomePage({featuredProduct,newProducts,wishedNewProducts}) {
   return (
@@ -20,6 +21,7 @@ export default function HomePage({featuredProduct,newProducts,wishedNewProducts}
       <GridProduct/>
       <NewProducts products={newProducts} wishedProducts={wishedNewProducts} />
       {/* <ProductList products={newProducts} /> */}
+      <Footer/>
     </div>
   );
 }
