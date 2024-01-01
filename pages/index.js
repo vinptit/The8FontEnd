@@ -11,6 +11,7 @@ import {Setting} from "@/models/Setting";
 import ProductList from "../components/Product";
 import GridProduct from "../components/GridProduct";
 import Footer from "../components/Footer";
+import ProductDetail from "../components/ProductDetail";
 
 export default function HomePage({featuredProduct,newProducts,wishedNewProducts}) {
   return (

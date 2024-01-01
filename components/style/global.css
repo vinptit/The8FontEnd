@@ -38,6 +38,8 @@
 } 
 .footer {
   color: #b97f1d;
-  
+}
+.breakText {
+  white-space: pre-line;
 }
 

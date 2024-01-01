@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import {mongooseConnect} from "@/lib/mongoose";
-import {Product} from "@/models/Product";
 
-export default function ProductDetail ({product})  {
+const ProductDetail = ({product}) => {
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'VND',
@@ -16,19 +14,38 @@ export default function ProductDetail ({product})  {
             <div class="w-full px-4 md:w-1/2 ">
                 <div class="sticky top-0 z-50 overflow-hidden ">
                     <div class="relative mb-6 lg:mb-10 lg:h-2/4 ">
-                        <img src= {product.images[0]} alt=""
+                        <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt=""
                             class="object-cover w-full lg:h-full "/>
                     </div>
                     <div class="flex-wrap hidden md:flex ">
-                    {product.images.map((item, index) => (
-                      <div key={index} class="w-1/2 p-2 sm:w-1/4">
-                            <Link href="#"
-                                class="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                                <img src={item} alt=""
+                        <div class="w-1/2 p-2 sm:w-1/4">
+                            <Link href="/"
+                                class="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
+                                <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt=""
                                     class="object-cover w-full lg:h-20"/>
                             </Link>
                         </div>
-                      ))}                                     
+                        <div class="w-1/2 p-2 sm:w-1/4">
+                            <Link href="#"
+                                class="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
+                                <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt=""
+                                    class="object-cover w-full lg:h-20"/>
+                            </Link>
+                        </div>
+                        <div class="w-1/2 p-2 sm:w-1/4">
+                            <Link href="#"
+                                class="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
+                                <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt=""
+                                    class="object-cover w-full lg:h-20"/>
+                            </Link>
+                        </div>
+                        <div class="w-1/2 p-2 sm:w-1/4">
+                            <Link href="#"
+                                class="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
+                                <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt=""
+                                    class="object-cover w-full lg:h-20"/>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -87,13 +104,14 @@ export default function ProductDetail ({product})  {
                             </ul>
                             <p class="text-xs dark:text-gray-400 ">(2 customer reviews)</p>
                         </div>
-                        <p class="max-w-md mb-8 text-gray-700 dark:text-gray-400 breakText">
-                            {product.description}
+                        <p class="max-w-md mb-8 text-gray-700 dark:text-gray-400">
+                            Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet
+                            Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet
                         </p>
                         <p class="inline-block mb-8 text-4xl font-bold text-gray-700 dark:text-gray-400 ">
-                            <span>{formatter.format(product.price)}</span>
+                            <span>$1000.99</span>
                             <span
-                                class="text-base font-normal text-gray-500 line-through dark:text-gray-400">1.000</span>
+                                class="text-base font-normal text-gray-500 line-through dark:text-gray-400">$1500.99</span>
                         </p>
                         <p class="text-green-600 dark:text-green-300 ">7 in stock</p>
                     </div>
@@ -172,13 +190,4 @@ export default function ProductDetail ({product})  {
   );
 };
 
-export async function getServerSideProps(context) {
-  await mongooseConnect();
-  const {id} = context.query;
-  const product = await Product.findById(id);
-  return {
-    props: {
-      product: JSON.parse(JSON.stringify(product)),
-    }
-  }
-}
+export default ProductDetail;
