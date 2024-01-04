@@ -43,61 +43,6 @@ const Box = styled.div`
   border-radius: 10px;
   padding: 30px;
 `;
-
-const ProductInfoCell = styled.td`
-  padding: 10px 0;
-  button{padding:0 !important;}
-`;
-
-const ProductImageBox = styled.div`
-  width: 70px;
-  height: 100px;
-  padding: 2px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  img{
-    max-width: 60px;
-    max-height: 60px;
-  }
-  @media screen and (min-width: 768px) {
-    padding: 10px;
-    width: 100px;
-    height: 100px;
-    img{
-      max-width: 80px;
-      max-height: 80px;
-    }
-  }
-`;
-
-const QuantityLabel = styled.span`
-  padding: 0 15px;
-  display: block;
-  @media screen and (min-width: 768px) {
-    display: inline-block;
-    padding: 0 6px;
-  }
-`;
-
-const CityHolder = styled.div`
-  display:flex;
-  gap: 5px;
-`;
-
-export default function CartPage() {
-  const {cartProducts,addProduct,removeProduct,clearCart} = useContext(CartContext);
-  const {data:session} = useSession();
-  const [products,setProducts] = useState([]);
-  const [name,setName] = useState('');
-  const [email,setEmail] = useState('');
-  const [city,setCity] = useState('');
-  const [postalCode,setPostalCode] = useState('');
-  const [streetAddress,setStreetAddress] = useState('');
-  const [country,setCountry] = useState('');
-  const [isSuccess,setIsSuccess] = useState(false);
   const [shippingFee, setShippingFee] = useState(null);
   useEffect(() => {
     if (cartProducts.length > 0) {
@@ -110,14 +55,7 @@ export default function CartPage() {
     }
   }, [cartProducts]);
   useEffect(() => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-    if (window?.location.href.includes('success')) {
-      setIsSuccess(true);
-      clearCart();
-    }
-    axios.get('/api/settings?name=shippingFee').then(res => {
+axios.get('/api/settings?name=shippingFee').then(res => {
       setShippingFee(res.data.value);
     })
   }, []);
@@ -145,17 +83,125 @@ export default function CartPage() {
       name,email,city,postalCode,streetAddress,country,
       cartProducts,
     });
-    if (response.data.url) {
-      window.location = response.data.url;
+ if (response.data.success) {
+      setIsSuccess(true);
+      clearCart();
     }
+  
+    // if (response.data.url) {
+    //   window.location = response.data.url;
+    // }
   }
   let productsTotal = 0;
   for (const productId of cartProducts) {
     const price = products.find(p => p._id === productId)?.price || 0;
     productsTotal += price;
   }
+  async function confirmationStep() {
+    setConfirm(true);
+  }
 
-  if (isSuccess) {
+  if (confirm) {
+    return (
+      <>
+        <Header />
+      <Center>
+        <ColumnsWrapper>
+          <RevealWrapper delay={0}>
+            <Box>
+              <h2>Cart</h2>
+              {!cartProducts?.length && (
+                <div>Your cart is empty</div>
+              )}
+              {products?.length > 0 && (
+                <Table>
+                  <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {products.map(product => (
+                    <tr>
+                      <ProductInfoCell>
+                        <ProductImageBox>
+                          <img src={product.images[0]} alt=""/>
+                        </ProductImageBox>
+                        {product.title}
+                      </ProductInfoCell>
+                      <td>
+                        
+                        <QuantityLabel>
+                          {cartProducts.filter(id => id === product._id).length}
+                        </QuantityLabel>
+                      </td>
+                      <td>
+                        ${cartProducts.filter(id => id === product._id).length * product.price}
+                      </td>
+                    </tr>
+                  ))}
+                  <tr className="subtotal">
+                    <td colSpan={2}>Products</td>
+                    <td>${productsTotal}</td>
+                  </tr>
+                  <tr className="subtotal">
+                    <td colSpan={2}>Shipping</td>
+                    <td>${shippingFee}</td>
+                  </tr>
+                  <tr className="subtotal total">
+                    <td colSpan={2}>Total</td>
+                    <td>${productsTotal + parseInt(shippingFee || 0)}</td>
+</tr>
+                  </tbody>
+                </Table>
+              )}
+            </Box>
+          </RevealWrapper>
+          {!!cartProducts?.length && (
+            <RevealWrapper delay={100}>
+              <Box>
+                <h2>Order information</h2>
+                <tbody>
+                    <tr>
+                      <td>Name:</td>
+                      <td>{name}</td>
+                    </tr>
+                    <tr>
+                      <td>Email:</td>
+                      <td>{email}</td>
+                    </tr>
+                    <tr>
+                      <td>City:</td>
+                      <td>{city}</td>
+                    </tr>
+                    <tr>
+                      <td>Postal Code:</td>
+                      <td>{postalCode}</td>
+                    </tr>
+                    <tr>
+                      <td>Street Address:</td>
+                      <td>{streetAddress}</td>
+                    </tr>
+                    <tr>
+                      <td>Country:</td>
+                      <td>{country}</td>
+                    </tr>
+                  </tbody>
+                <Button black block
+                        onClick={goToPayment}>
+                  Confirm
+                </Button>
+              </Box>
+            </RevealWrapper>
+          )}
+        </ColumnsWrapper>
+      </Center>
+      </>
+    )
+  }
+if (isSuccess) {
     return (
       <>
         <Header />
@@ -215,16 +261,16 @@ export default function CartPage() {
                   ))}
                   <tr className="subtotal">
                     <td colSpan={2}>Products</td>
-                    <td>{productsTotal}VND</td>
+                    <td>${productsTotal}</td>
                   </tr>
                   <tr className="subtotal">
                     <td colSpan={2}>Shipping</td>
-                    <td>{shippingFee}VND</td>
+                    <td>${shippingFee}</td>
                   </tr>
                   <tr className="subtotal total">
                     <td colSpan={2}>Total</td>
-                    <td>{productsTotal + parseInt(shippingFee || 0)}VND</td>
-                  </tr>
+                    <td>${productsTotal + parseInt(shippingFee || 0)}</td>
+ </tr>
                   </tbody>
                 </Table>
               )}
@@ -268,13 +314,7 @@ export default function CartPage() {
                        onChange={ev => setCountry(ev.target.value)}/>
                 <Button black block
                         onClick={goToPayment}>
+                        
                   Continue to payment
                 </Button>
               </Box>
-            </RevealWrapper>
-          )}
-        </ColumnsWrapper>
-      </Center>
-    </>
-  );
-}
