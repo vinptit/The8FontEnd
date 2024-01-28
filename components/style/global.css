@@ -43,3 +43,18 @@
   white-space: pre-line;
 }
 
+@layer utilities {
+  .custom-after::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -40px;
+    width: 100px;
+    height: 100%;
+    background: #b97f1d;
+    transform: skewX(37deg);
+    z-index: -1;
+  }
+}
+

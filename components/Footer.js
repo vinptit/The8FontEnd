@@ -33,8 +33,9 @@ const Footer = () => {
   <div class="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
     <div class="mx-auto max-w-sm lg:max-w-none">
       <p class="footer mt-4 text-center lg:text-left lg:text-lg">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium natus quod eveniet
-        aut perferendis distinctio iusto repudiandae, provident velit earum?
+        Chào mừng bạn đến với 8HOAHOP - địa chỉ đáng tin cậy cho dầu nhớt chất lượng cao và phụ tùng xe đa dạng. 
+        Chúng tôi tự hào cung cấp những sản phẩm chất lượng nhất để bảo vệ và duy trì hiệu suất xe của bạn.
+        Khám phá sự đa dạng của chúng tôi và trang bị phương tiện của bạn với những sản phẩm tốt nhất từ các thương hiệu hàng đầu trong ngành công nghiệp xe.
       </p>
 
       <div class="mt-6 flex justify-center gap-4 lg:justify-start">

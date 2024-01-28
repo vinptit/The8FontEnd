@@ -11,11 +11,16 @@ module.exports = {
       fontFamily: {
         play: ['Play', 'sans-serif'],
         'chakra-petch': ['Chakra Petch', 'sans-serif'],
-      },
+      }     
     },
   },
   plugins: [
     
   ],
+  variants: {
+    extend: {
+      before: ['responsive'],
+    },
+  },
 }
 
